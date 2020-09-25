@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Binary Search Tree</title>
+</head>
+<body>
+	<script type="text/javascript" src="http://students.engr.scu.edu/~adiaztos/resources/testBst.js"></script>
+	<script>
+		// Implement a Binary Search Tree using JS Constructors and Pro
+		(function(){
+			"use strict";
+			
+			function Node(val){
+				this.left = null;
+				this.right = null;
+				this.val = val;
+			}
+
+			function BinarySearchTree(){
+				this.root = null;
+			}
+
+			BinarySearchTree.prototype.insert = function(val){
+				if(this.root == null){
+					this.root = new Node(val);
+					return;
+				}
+				var current = this.root;
+				while(current != null){
+					if(val < current.val){
+						if(current.left == null){
+							current.left = new Node(val);
+							break;
+						} else
+							current = current.left;
+					} else {
+						if(current.right == null){
+							current.right = new Node(val);
+							break;
+						} else
+							current = current.right;
+					}
+				}
+			};
+			
+			BinarySearchTree.prototype.search = function(val){
+				if(val!=null){
+					var current = this.root;
+					while(current != null){
+						if(val == current.val)
+							return true;
+						else if (val < current.val)
+							current = current.left;
+						else
+							current = current.right;
+					}
+				}
+				return false;
+			};
+
+			BinarySearchTree.prototype.inorder = function(fn){
+				var current = this.root;
+				var stack = [];
+
+				while(current != null || stack.length > 0){
+					if(current!=null){
+						stack.push(current);
+						current = current.left;
+					}
+					else{
+						current = stack.pop();
+						fn(current.val);
+						current = current.right;
+					}
+				}
+			};
+
+			var bst = new BinarySearchTree();
+
+			testBst(bst);
+		})();
+
+
+
+
+
+		// Uncomment this line to test your complete BST - make sure to pass a BST object created with the new keyword
+		// testBst(bst);
+	</script>
+</body>
+</html>

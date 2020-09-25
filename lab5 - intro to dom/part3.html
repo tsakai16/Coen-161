@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lab 4 - Part 3</title>
+</head>
+<body>
+	<!-- Sample HTML -->
+	<label>My Input: <input type="text" id="myInput"></label><button type="button">Submit</button>
+	<img src="http://students.engr.scu.edu/~adiaztos/resources/choconut.jpg" alt="A Goat">
+	<p id="somePara"><span class="allSpans"></span></p>
+
+	<script>
+		// Your function goes here 
+		function getElementsByAttribute(attribute){
+			var elements = document.getElementsByTagName('*');
+			var returnValues = [];
+			for(var i = 0; i < elements.length;i++){
+				if(elements[i].getAttribute(attribute) != null)
+					returnValues.push(elements[i]);
+			}
+			console.log(returnValues);
+		}
+		
+		// test your function with some sample attributes
+		var button = document.querySelectorAll("button[type = 'button']")[0];
+		button.onclick = function(){
+			var sample = document.getElementById("myInput").value;
+			getElementsByAttribute(sample);
+		}
+	</script>
+</body>
+</html>
